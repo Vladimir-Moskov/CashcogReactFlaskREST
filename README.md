@@ -1,4 +1,4 @@
-# InterviewXCNTGmbH-
+# InterviewXCNTGmbH
 
 Hi Volodymyr,
 
