@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>{{ title }} - Interview Smart Steel Technologies GmbH </title>
+            <style>
+            /* TODO move all CSS in to style.css file*/
+            table {
+              font-family: arial;
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+
+    </style>
+    </head>
+    <body>
+         <div>
+            <a href="/steelProcessing">Steel Processing DATA</a>
+         </div>
+
+         <div>
+            <a href="/log">User Requests Log</a>
+         </div>
+
+         {% if user %}
+          <div>
+              <h1>Hello, {{ user }}!</h1>
+          </div>
+         {% endif %}
+        <div>
+            <h1>{{ title }}</h1>
+         </div>
+        <hr>
+         <h1>Author: Volodymyr Moskov</h1>
+         <h1>Date: 2019-12-15</h1>
+
+        {% block content %}
+
+        {% endblock %}
+
+
+    </body>
+</html>
