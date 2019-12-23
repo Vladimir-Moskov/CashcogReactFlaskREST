@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <table>
+        <tr>
+            {% for header in headers %}
+            <th>{{ header }}</th>
+            {% endfor %}
+          </tr>
+        {% for employee_item in employee_all %}
+        <tr valign="top">
+            <td>{{ employee_item.id }}</td>
+            <td>{{ employee_item.uuid }}</td>
+            <td>{{ employee_item.first_name }}</td>
+            <td>{{ employee_item.last_name }}</td>
+            <td>{{ employee_item.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

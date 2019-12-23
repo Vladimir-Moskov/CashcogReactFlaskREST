@@ -4,7 +4,6 @@ from app import app
 from app.config import Config
 
 if __name__ == '__main__':
-    # app.run(host=Config.SERVER_NAME_WEB_APP, port=Config.PORT_API_APP)
-    app.config["APPLICATION_ROOT"] = Config.SERVER_NAME_WEB_APP
+    # app.config['APPLICATION_ROOT'] = Config.SERVER_NAME_WEB_APP
+    app.run(port=Config.PORT_WEB_APP, debug=Config.DEBUG_GLOBAL)
 
-    app.run(host=Config.SERVER_NAME_WEB_APP, port=Config.PORT_API_APP, debug=Config.DEBUG_GLOBAL)

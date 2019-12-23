@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>{{ title }} - Interview Smart Steel Technologies GmbH </title>
+        <title>{{ title }} - Interview XCNT GmbH </title>
             <style>
             /* TODO move all CSS in to style.css file*/
             table {
@@ -23,11 +23,15 @@
     </head>
     <body>
          <div>
-            <a href="/steelProcessing">Steel Processing DATA</a>
+            <a href="{{ app_root }}/expenses">Expenses DATA</a>
          </div>
 
          <div>
-            <a href="/log">User Requests Log</a>
+            <a href="{{ app_root }}/employee">Employee DATA</a>
+         </div>
+
+         <div>
+            <a href="{{ app_root }}/log">User Requests Log</a>
          </div>
 
          {% if user %}
@@ -40,7 +44,7 @@
          </div>
         <hr>
          <h1>Author: Volodymyr Moskov</h1>
-         <h1>Date: 2019-12-15</h1>
+         <h1>Date: 2019-12-23</h1>
 
         {% block content %}
 

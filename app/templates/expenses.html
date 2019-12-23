@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <table>
+        <tr>
+            {% for header in headers %}
+            <th>{{ header }}</th>
+            {% endfor %}
+          </tr>
+        {% for expense_item in expenses_all %}
+        <tr valign="top">
+            <td>{{ expense_item.id }}</td>
+            <td>{{ expense_item.uuid }}</td>
+            <td>{{ process_item.description }}</td>
+            <td>{{ process_item.created_at }}</td>
+            <td>{{ process_item.currency }}</td>
+            <td>{{ process_item.currency }}</td>
+            <td>{{ process_item.amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

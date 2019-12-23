@@ -10,11 +10,11 @@ class Config(object):
     DEBUG_GLOBAL = True
 
     # wep app port and name
-    SERVER_NAME_WEB_APP = "/CashcogXCNT-Expenses/"
-    PORT_WEB_APP = 5000
+    SERVER_NAME_WEB_APP = "/CashcogXCNT-Expenses"
+    PORT_WEB_APP = "5000"
 
     # wep app port
-    PORT_API_APP = 5001
+    PORT_API_APP = "5001"
     SERVER_NAME_API_APP = "/cashcogXCNT/api/v1"
 
     # Setup Database driver/ connect to DB
@@ -26,3 +26,6 @@ class Config(object):
     CASHCOG_STREAM_URL = "https://cashcog.xcnt.io/stream"
     CASHCOG_SINGLE_URL = "https://cashcog.xcnt.io/single"
 
+    # APPLICATION_ROOT = SERVER_NAME_WEB_APP
+    # SCRIPT_NAME = SERVER_NAME_WEB_APP
+    # SERVER_NAME = 'localhost:' + PORT_WEB_APP

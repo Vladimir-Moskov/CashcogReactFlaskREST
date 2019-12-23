@@ -1,34 +1,35 @@
 from flask import request
 from flask import render_template
-from app import app
+from app import app, app_blueprint
 from app.models import Expense
 from app.models import Employee
 from app.models import ApplicationRequestLog
 from functools import wraps
+from app.config import Config
 
 
 # user request logging decorator
 def log_request(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        ApplicationRequestLog.query_add(request)
+        ApplicationRequestLog.query_add(request, )
         return func(*args, **kwargs)
 
     return decorated
 
 
-@app.route('/')
-@app.route('/index')
+@app_blueprint.route('/')
+@app_blueprint.route('/index')
 @log_request
 def index():
     """
         Welcome page
     :return:
     """
-    return render_template('index.html', title='Welcome here')
+    return render_template('index.html', title='Welcome here',  app_root=Config.SERVER_NAME_WEB_APP,)
 
 
-@app.route('/expenses')
+@app_blueprint.route('/expenses')
 @log_request
 def expenses():
     """
@@ -37,12 +38,30 @@ def expenses():
     :return:
     """
     # TODO - it is nice to have paging/filtering over data
-    return render_template('steelProcessing.html',
-                           title='Steel Processing',
+    return render_template('expenses.html',
+                           app_root=Config.SERVER_NAME_WEB_APP,
+                           title='XCNT Expenses',
                            headers=Expense.headers(),
                            steelprocessing_all=Expense.query_get_all())
 
-@app.route('/log')
+
+@app_blueprint.route('/employee')
+@log_request
+def employee():
+    """
+         Page with data from task_data.csv in order to solve
+         Serve the database data (from `task_data.csv`) in a _simple_ html format
+    :return:
+    """
+    # TODO - it is nice to have paging/filtering over data
+    return render_template('employee.html',
+                           app_root=Config.SERVER_NAME_WEB_APP,
+                           title='XCNT Employee',
+                           headers=Employee.headers(),
+                           steelprocessing_all=Employee.query_get_all())
+
+
+@app_blueprint.route('/log')
 @log_request
 def log():
     """
@@ -52,6 +71,10 @@ def log():
     """
     # TODO - it is nice to have paging/filtering over data
     return render_template('applicationLog.html',
+                           app_root=Config.SERVER_NAME_WEB_APP,
                            title='Application Log',
                            headers=ApplicationRequestLog.headers(),
                            logs_all=ApplicationRequestLog.query_get_all())
+
+
+app.register_blueprint(app_blueprint, url_prefix=Config.SERVER_NAME_WEB_APP)
