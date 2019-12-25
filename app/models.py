@@ -1,4 +1,8 @@
-# typical flask model setup
+"""
+    ORM - typical flask model setup
+    ApplicationRequestLog for logs
+    SteelProcessing for records from given file with data
+"""
 from app import db
 from datetime import datetime
 from enum import Enum
@@ -24,6 +28,10 @@ class ApplicationRequestLog(db.Model):
     application_type = db.Column(db.String(10))
 
     def __repr__(self):
+        """
+           Standard customization of class instance to string
+           :return: string representation of object
+        """
         return '<ApplicationRequestLog: id:{}, timestamp:{}, remote_address:{}, remote_user:{}, user_agent:{}>'. \
             format(self.id, self.timestamp, self.remote_address, self.url, self.remote_user, self.user_agent)
 

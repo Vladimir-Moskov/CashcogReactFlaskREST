@@ -18,6 +18,17 @@ def log_request(func):
     return decorated
 
 
+@log_request
+@app.errorhandler(404)
+def not_found(e):
+    """
+         use template made by Colorlib (https://colorlib.com)
+        :param e: request
+        :return: error page wrapper
+    """
+    return render_template('404.html', app_root=Config.SERVER_NAME_WEB_APP), 404
+
+
 @app_blueprint.route('/')
 @app_blueprint.route('/index')
 @log_request
