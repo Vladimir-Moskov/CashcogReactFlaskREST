@@ -19,7 +19,7 @@ class ApplicationRequestLog(db.Model):
         Table to store user requests for "On each GET request, log that the data was requested (in the same database)"
     """
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    timestamp = db.Column(db.DateTime, index=True, unique=False)
+    timestamp = db.Column(db.DateTime, index=True, unique=False, default=datetime.datetime.now)
     remote_addr = db.Column(db.String(100))
     url = db.Column(db.String(1000))
     method = db.Column(db.String(10))
@@ -49,9 +49,7 @@ class ApplicationRequestLog(db.Model):
 
     @staticmethod
     def query_add(request):
-        timestamp_datetime = datetime.now()
-        new_row = ApplicationRequestLog(timestamp=timestamp_datetime,
-                                        remote_addr=request.remote_addr,
+        new_row = ApplicationRequestLog(remote_addr=request.remote_addr,
                                         url=request.url,
                                         method=request.method,
                                         user_agent=str(request.user_agent),
