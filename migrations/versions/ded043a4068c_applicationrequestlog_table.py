@@ -1,8 +1,8 @@
 """ApplicationRequestLog table
 
-Revision ID: 7bae8bfe4cbe
+Revision ID: ded043a4068c
 Revises: 
-Create Date: 2019-12-22 20:42:50.698344
+Create Date: 2019-12-27 15:46:52.389855
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7bae8bfe4cbe'
+revision = 'ded043a4068c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,9 +44,10 @@ def upgrade():
     sa.Column('uuid', sa.String(length=36), nullable=False),
     sa.Column('description', sa.String(length=4000), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('currency', sa.String(length=4), nullable=True),
+    sa.Column('currency', sa.String(length=4), nullable=False),
     sa.Column('amount', sa.Float(), nullable=True),
-    sa.Column('employee_id', sa.Integer(), nullable=True),
+    sa.Column('employee_id', sa.Integer(), nullable=False),
+    sa.Column('approve_state', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['employee_id'], ['employee.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

@@ -1,9 +1,19 @@
 # flask application configuration variable
 
 import os
-from datetime import datetime
+from enum import Enum
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+
+class ApplicationType(Enum):
+    WEB_APP = 1
+    REST_API = 2
+
+
+class StreamDataInjectionType(Enum):
+    DIRECT_DB_DATA_INSERT = 1
+    USE_API_POST_DATA = 2
 
 
 class Config(object):
@@ -26,6 +36,9 @@ class Config(object):
     CASHCOG_STREAM_URL = "https://cashcog.xcnt.io/stream"
     CASHCOG_SINGLE_URL = "https://cashcog.xcnt.io/single"
 
+    UPDATE_FROM_STREAM = StreamDataInjectionType.DIRECT_DB_DATA_INSERT
     # APPLICATION_ROOT = SERVER_NAME_WEB_APP
     # SCRIPT_NAME = SERVER_NAME_WEB_APP
     # SERVER_NAME = 'localhost:' + PORT_WEB_APP
+
+

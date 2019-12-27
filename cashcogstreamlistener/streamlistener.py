@@ -6,7 +6,7 @@
 """
 
 import requests
-from app.config import Config
+from app.config import Config, StreamDataInjectionType
 from app.models import Expense
 from json import loads, JSONDecodeError
 
@@ -21,14 +21,15 @@ def start_read_stream():
         if line:
             try:
                 line_obj = loads(line)
-
-                Expense.query_add_from_json(line_obj)
+                if Config.UPDATE_FROM_STREAM == StreamDataInjectionType.DIRECT_DB_DATA_INSERT:
+                    Expense.query_add_from_json(line_obj)
+                elif Config.UPDATE_FROM_STREAM == StreamDataInjectionType.USE_API_POST_DATA:
+                    pass
 
                 # logging as print for now
                 print(loads(line))
             except (JSONDecodeError, TypeError) as error:
-
-                print("%r" % error)
+                print(f"{repr(error)}")
 
             else:
                 pass

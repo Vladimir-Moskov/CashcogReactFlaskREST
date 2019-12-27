@@ -53,7 +53,7 @@ def expenses():
                            app_root=Config.SERVER_NAME_WEB_APP,
                            title='XCNT Expenses',
                            headers=Expense.headers(),
-                           steelprocessing_all=Expense.query_get_all())
+                           expenses_all=Expense.query_get_all())
 
 
 @app_blueprint.route('/employee')
@@ -69,7 +69,7 @@ def employee():
                            app_root=Config.SERVER_NAME_WEB_APP,
                            title='XCNT Employee',
                            headers=Employee.headers(),
-                           steelprocessing_all=Employee.query_get_all())
+                           employee_all=Employee.query_get_all())
 
 
 @app_blueprint.route('/log')
