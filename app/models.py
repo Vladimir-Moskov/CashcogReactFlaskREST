@@ -32,8 +32,8 @@ class ApplicationRequestLog(db.Model):
                f'user_agent:{self.user_agent}>'
 
     @classmethod
-    def query_get_all(cls):
-        return cls.query.order_by(cls.timestamp.desc()).all()
+    def query_get_all(cls, top=100):
+        return cls.query.order_by(cls.timestamp.desc()).limit(top).all()
 
     @classmethod
     def query_delete_all(cls):
@@ -158,7 +158,7 @@ class Expense(db.Model):
     # Here is not normalized approach
     approve_state = db.Column(db.Integer, default=ApproveStateEnum.NOT_SET.value)
     # 'user name' - should be user id
-    approved_by = db.Column(db.String(4000), nullable=True)
+    approved_by = db.Column(db.String(100), nullable=True)
     approved_datetime = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self):
@@ -230,6 +230,25 @@ class Expense(db.Model):
         #    print("ERROR: add_from_json")
         print(json_item)
 
+    @classmethod
+    def query_approve(cls, expense_id, approve_state, approved_by):
+        expense = Expense.query.filter_by(id=expense_id).first()
+        expense.approve_state = approve_state
+        expense.approved_by = approved_by
+        expense.approved_datetime = datetime.now()
+        db.session.commit()
+
+    @classmethod
+    def query_approve_from_json(cls, expense_id, json_item):
+        #try:
+        new_status = ApproveStateEnum[json_item['approve']].value
+        user = json_item['user']
+        cls.query_approve(expense_id, new_status, user)
+        #except:
+        #    print("ERROR: json_item")
+
+        print(json_item)
+
 
 class ExpenseSchema(marshmallow.ModelSchema):
     class Meta:
@@ -239,3 +258,8 @@ class ExpenseSchema(marshmallow.ModelSchema):
 class EmployeeSchema(marshmallow.ModelSchema):
     class Meta:
         model = Employee
+
+
+class ApplicationRequestLogSchema(marshmallow.ModelSchema):
+    class Meta:
+        model = ApplicationRequestLog
