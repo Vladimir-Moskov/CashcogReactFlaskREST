@@ -3,7 +3,7 @@
     ApplicationRequestLog for logs
     SteelProcessing for records from given file with data
 """
-from app import db
+from app import db, marshmallow
 from datetime import datetime
 from app.config import ApplicationType
 from enum import Enum
@@ -175,8 +175,11 @@ class Expense(db.Model):
                 "APPROVED_TIME"]
 
     @classmethod
-    def query_get_all(cls):
-        return cls.query.all()
+    def query_get_all(cls, expense_id=None):
+        if expense_id:
+            return cls.query.filter_by(id=expense_id).first()
+        else:
+            return cls.query.all()
 
     @classmethod
     def query_get_all_join_employee(cls):
@@ -223,3 +226,8 @@ class Expense(db.Model):
         #except:
         #    print("ERROR: add_from_json")
         print(json_item)
+
+
+class ExpenseSchema(marshmallow.ModelSchema):
+    class Meta:
+        model = Expense

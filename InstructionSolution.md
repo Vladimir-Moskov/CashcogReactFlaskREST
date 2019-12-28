@@ -1,5 +1,7 @@
 # flask db migrate -m "ApplicationRequestLog table"
 # TODO: add better exception handling
+http://127.0.0.1:5000/cashcogXCNT/api/v1/expense/1
+
 
 
 # Here is solution

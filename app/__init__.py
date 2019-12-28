@@ -4,6 +4,7 @@ from flask import Flask, Blueprint
 from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_marshmallow import Marshmallow
 
 # setup flask application
 # app = Flask(__name__, root_path=Config.APPLICATION_ROOT)
@@ -19,6 +20,6 @@ app.config.from_object(Config)
 # add DB - just sqllite
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
+marshmallow = Marshmallow(app)
 
 from app import routes, models

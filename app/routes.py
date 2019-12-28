@@ -1,9 +1,7 @@
 from flask import request
 from flask import render_template
 from app import app, app_blueprint
-from app.models import Expense
-from app.models import Employee
-from app.models import ApplicationRequestLog
+from app.models import Expense, Employee, ApplicationRequestLog
 from functools import wraps
 from app.config import Config
 
