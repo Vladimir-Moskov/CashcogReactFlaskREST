@@ -37,6 +37,8 @@ class Config(object):
     CASHCOG_SINGLE_URL = "https://cashcog.xcnt.io/single"
 
     UPDATE_FROM_STREAM = StreamDataInjectionType.DIRECT_DB_DATA_INSERT
+    # Implement 'microservices' approach
+    # UPDATE_FROM_STREAM = StreamDataInjectionType.USE_API_POST_DATA
     # APPLICATION_ROOT = SERVER_NAME_WEB_APP
     # SCRIPT_NAME = SERVER_NAME_WEB_APP
     # SERVER_NAME = 'localhost:' + PORT_WEB_APP

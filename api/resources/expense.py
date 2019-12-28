@@ -1,9 +1,10 @@
 from flask_restful import reqparse, Resource
-from app.models import Expense, Employee, ApplicationRequestLog, ExpenseSchema
+from app.models import Expense, Employee, ApplicationRequestLog, ExpenseSchema, EmployeeSchema
+from flask import request
 
-parser = reqparse.RequestParser()
-parser.add_argument('expense_id', type=int, help='expense_id')
-args = parser.parse_args()
+# parser = reqparse.RequestParser()
+# parser.add_argument('expense_id', type=int, help='expense_id')
+# args = parser.parse_args()
 
 
 class ExpenseAPI(Resource):
@@ -16,9 +17,22 @@ class ExpenseAPI(Resource):
         result = ExpenseSchema().dump(query_data, many=(expense_id is None))
         return {'status': 'success', 'data': result}, 200
 
+    def post(self):
+        data = request.get_json()
+        new_item = Expense.query_add_from_json(data)
+        return data, 201
+
     def put(self, expense_id):
-        #args = parser.parse_args()
-        # task = {'task': args['expense_id']}
-        task = {'task': 'expense_id'}
-        # TODOS[todo_id] = task
-        return {'status': 'success', 'data': task}, 201
+        data = request.get_json()
+        return data, 201
+
+
+class EmployeeAPI(Resource):
+    """
+
+    """
+
+    def get(self, employee_id=None):
+        query_data = Employee.query_get_all(employee_id)
+        result = EmployeeSchema().dump(query_data, many=(employee_id is None))
+        return {'status': 'success', 'data': result}, 200

@@ -83,8 +83,11 @@ class Employee(db.Model):
                f' created_at:{self.created_at}>'
 
     @classmethod
-    def query_get_all(cls):
-        return cls.query.all()
+    def query_get_all(cls, employee_id=None):
+        if employee_id:
+            return cls.query.filter_by(id=employee_id).first()
+        else:
+            return cls.query.all()
 
     @classmethod
     def query_delete_all(cls):
@@ -149,7 +152,7 @@ class Expense(db.Model):
     currency = db.Column(db.String(4), nullable=False)
     amount = db.Column(db.Float, default=0)
     employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable=False)
-    employee = db.relationship("Employee", backref=db.backref("employee", uselist=False))
+    employee = db.relationship("Employee", backref=db.backref("expense", uselist=False))
 
     # TODO: as it uses sqllite for now - TYINT, BIT or SHORT type not available for 3 states column
     # Here is not normalized approach
@@ -231,3 +234,8 @@ class Expense(db.Model):
 class ExpenseSchema(marshmallow.ModelSchema):
     class Meta:
         model = Expense
+
+
+class EmployeeSchema(marshmallow.ModelSchema):
+    class Meta:
+        model = Employee
