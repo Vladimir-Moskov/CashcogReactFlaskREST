@@ -23,7 +23,7 @@ def start_read_stream():
 
             try:
                 line_obj = loads(line)
-                local_process = Process(target=save_expence_from_stream, args=(line_obj,))
+                local_process = Process(target=save_expense_from_stream, args=(line_obj,))
                 local_process.start()
             except (JSONDecodeError, TypeError) as error:
                 print(f"{repr(error)}")
@@ -34,7 +34,7 @@ def start_read_stream():
                 pass
 
 
-def save_expence_from_stream(line_obj):
+def save_expense_from_stream(line_obj):
     """
 
     :param line_obj:
