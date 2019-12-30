@@ -7,6 +7,7 @@ from app import db, marshmallow
 from datetime import datetime
 from app.config import ApplicationType
 from enum import Enum
+from typing import List, Optional, Any, Dict
 
 
 class ApplicationRequestLog(db.Model):
@@ -22,7 +23,7 @@ class ApplicationRequestLog(db.Model):
     remote_user = db.Column(db.String(100))
     application_type = db.Column(db.String(10))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
            Standard customization of class instance to string
            :return: string representation of object
@@ -32,16 +33,16 @@ class ApplicationRequestLog(db.Model):
                f'user_agent:{self.user_agent}>'
 
     @classmethod
-    def query_get_all(cls, top=100):
+    def query_get_all(cls, top: int = 100) -> Optional[Any]:
         return cls.query.order_by(cls.timestamp.desc()).limit(top).all()
 
     @classmethod
-    def query_delete_all(cls):
+    def query_delete_all(cls) -> None:
         cls.query.delete()
         db.session.commit()
 
     @classmethod
-    def query_add(cls, request):
+    def query_add(cls, request) -> None:
         new_row = cls(remote_addr=request.remote_addr,
                       url=request.url,
                       method=request.method,
@@ -53,7 +54,7 @@ class ApplicationRequestLog(db.Model):
 
     # TODO - change it to dictionary {header: field}
     @staticmethod
-    def headers():
+    def headers() -> List[str]:
         """
 
         :return: list of headers names for ui
@@ -78,24 +79,24 @@ class Employee(db.Model):
     last_name = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, index=False, unique=False)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'<Employee: id:{self.id}, uuid:{self.uuid}, first_name:{self.first_name}, last_name:{self.last_name},' \
                f' created_at:{self.created_at}>'
 
     @classmethod
-    def query_get_all(cls, employee_id=None):
+    def query_get_all(cls, employee_id: int = None) -> Optional[Any]:
         if employee_id:
             return cls.query.filter_by(id=employee_id).first()
         else:
             return cls.query.all()
 
     @classmethod
-    def query_delete_all(cls):
+    def query_delete_all(cls) -> None:
         cls.query.delete()
         db.session.commit()
 
     @classmethod
-    def add_item(cls, employee_item):
+    def add_item(cls, employee_item: Dict) -> int:
         new_id = 0
         #try:
         new_id = cls.query_add(employee_item["uuid"],  employee_item["first_name"], employee_item["last_name"])
@@ -104,7 +105,7 @@ class Employee(db.Model):
         return new_id
 
     @classmethod
-    def query_add(cls, uuid, first_name, last_name):
+    def query_add(cls, uuid: str, first_name: str, last_name: str) -> int:
         new_row = cls.query.filter_by(uuid=uuid).first()
         new_id = 0
         if new_row:
@@ -120,7 +121,7 @@ class Employee(db.Model):
 
     # TODO - change it to dictionary {header: field}
     @staticmethod
-    def headers():
+    def headers() -> List[str]:
         """
 
         :return: list of headers names for ui
@@ -161,7 +162,7 @@ class Expense(db.Model):
     approved_by = db.Column(db.String(100), nullable=True)
     approved_datetime = db.Column(db.DateTime, nullable=True)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'<Expense: id:{self.id}, uuid:{self.uuid}, description:{self.description}, ' \
                f'created_at:{self.created_at}, ' \
                f'currency:{self.currency}, amount:{self.amount}, approve_state:{self.approve_state}, ' \
@@ -169,7 +170,7 @@ class Expense(db.Model):
 
     # TODO - change it to dictionary {header: field}
     @staticmethod
-    def headers():
+    def headers() -> List[str]:
         """
 
         :return: list of headers names for ui
@@ -178,24 +179,24 @@ class Expense(db.Model):
                 "APPROVED_TIME"]
 
     @classmethod
-    def query_get_all(cls, expense_id=None):
+    def query_get_all(cls, expense_id: int = None) -> Optional[Any]:
         if expense_id:
             return cls.query.filter_by(id=expense_id).first()
         else:
             return cls.query.all()
 
     @classmethod
-    def query_get_all_join_employee(cls):
+    def query_get_all_join_employee(cls) -> Optional[Any]:
         records = cls.query.join(Employee).all()
         return records
 
     @classmethod
-    def query_delete_all(cls):
+    def query_delete_all(cls) -> None:
         cls.query.delete()
         db.session.commit()
 
     @classmethod
-    def query_add(cls, uuid, description, created_at, currency, amount, employee_id):
+    def query_add(cls, uuid: str, description: str, created_at , currency: str, amount: float, employee_id: int) -> Optional[Any]:
         # check if row with the same id already exists
         exists = cls.query.filter_by(uuid=uuid).first()
         if not exists:
@@ -211,7 +212,7 @@ class Expense(db.Model):
         return exists
 
     @classmethod
-    def add_item(cls, expense_item, employee_id):
+    def add_item(cls, expense_item: Dict, employee_id: int) -> Optional[Any]:
         created_at = datetime.strptime(expense_item["created_at"], '%Y-%m-%dT%H:%M:%S')
         return cls.query_add(uuid=expense_item["uuid"],
                              description=expense_item["description"],
@@ -221,7 +222,7 @@ class Expense(db.Model):
                              employee_id=employee_id)
 
     @classmethod
-    def query_add_from_json(cls, json_item):
+    def query_add_from_json(cls, json_item: Dict) -> None:
         #try:
         new_employee_id = Employee.add_item(json_item["employee"])
         if new_employee_id > 0:
@@ -231,7 +232,7 @@ class Expense(db.Model):
         print(json_item)
 
     @classmethod
-    def query_approve(cls, expense_id, approve_state, approved_by):
+    def query_approve(cls, expense_id: int, approve_state: int, approved_by: str) -> None:
         expense = Expense.query.filter_by(id=expense_id).first()
         expense.approve_state = approve_state
         expense.approved_by = approved_by
@@ -239,7 +240,7 @@ class Expense(db.Model):
         db.session.commit()
 
     @classmethod
-    def query_approve_from_json(cls, expense_id, json_item):
+    def query_approve_from_json(cls, expense_id: int, json_item: Dict) -> None:
         #try:
         new_status = ApproveStateEnum[json_item['approve']].value
         user = json_item['user']
