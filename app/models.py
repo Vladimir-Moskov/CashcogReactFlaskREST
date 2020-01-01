@@ -1,7 +1,8 @@
 """
     ORM - typical flask model setup
     ApplicationRequestLog for logs
-    SteelProcessing for records from given file with data
+    Expense for records from given stream service
+    Employee for Employee sub-object of Expense from given stream service
 """
 from app import db, marshmallow
 from datetime import datetime
@@ -137,7 +138,7 @@ class ApproveStateEnum(Enum):
 
 class Expense(db.Model):
     """
-        Table SteelProcessing - store data model from file task_data.csv
+        Table Expense - store data model for Expenses object from stream service
 
         "uuid": "92b19fc6-5386-4985-bf5c-dc56c903dd23",
         "description": "Itaque fugiat repellendus velit deserunt praesentium.",
