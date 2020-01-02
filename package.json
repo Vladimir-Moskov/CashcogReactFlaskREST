@@ -1,0 +1,42 @@
+{
+  "name": "appXCNTfrontend",
+  "version": "1.0.0",
+  "description": "React frontend for XCNT",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development  ./app/frontend/src/index.js --output ./app/static/frontend/main.js",
+    "build": "webpack --mode production ./app/frontend/src/index.js --output ./app/static/frontend/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vladimir-Moskov/InterviewXCNTGmbH.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vladimir-Moskov/InterviewXCNTGmbH/issues"
+  },
+  "homepage": "https://github.com/Vladimir-Moskov/InterviewXCNTGmbH#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-alert": "^6.0.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  }
+}

@@ -35,8 +35,8 @@ def index():
         Welcome page
     :return:
     """
-    return render_template('index.html', title='Welcome here',  app_root=Config.SERVER_NAME_WEB_APP,)
-
+    # return render_template('index.html', title='Welcome here',  app_root=Config.SERVER_NAME_WEB_APP,)
+    return render_template('frontend/index.html', title='Welcome here',  app_root=Config.SERVER_NAME_WEB_APP,)
 
 @app_blueprint.route('/expenses')
 @log_request

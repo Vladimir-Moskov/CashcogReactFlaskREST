@@ -1,3 +1,16 @@
+npm i -D webpack webpack webpack-cli
+npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
+npm i react react-dom prop-types
+
+npm run dev
+npm run build
+npm i axios react-alert  react-redux react-router-dom redux redux-devtools-extension redux-thunk
+
+--watch
+
+style="background-color: #e3f2fd;"
+
+
 # flask db migrate -m "ApplicationRequestLog table"
 # TODO: add better exception handling
 http://127.0.0.1:5000/cashcogXCNT/api/v1/expense/1
