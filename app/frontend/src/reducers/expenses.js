@@ -1,4 +1,4 @@
-import { GET_EXPENSES } from "../actions/types.js";
+import { GET_EXPENSES, APPROVE_EXPENSE, DISAPPROVE_EXPENSE } from "../actions/types.js";
 
 const initialState = {
   expenses: []
@@ -7,6 +7,12 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_EXPENSES:
+      return {
+        ...state,
+        expenses: action.payload
+      };
+
+    case APPROVE_EXPENSE:
       return {
         ...state,
         expenses: action.payload

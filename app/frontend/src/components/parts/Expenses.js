@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getExpenses } from "../../actions/expenses";
+import { getExpenses, approveExpense } from "../../actions/expenses";
 
 export class Expenses extends Component {
     static propTypes = {
         expenses: PropTypes.array.isRequired,
-        getExpenses: PropTypes.func.isRequired
+        getExpenses: PropTypes.func.isRequired,
+        approveExpense: PropTypes.func.isRequired,
      };
 
       componentDidMount() {
@@ -48,7 +49,7 @@ export class Expenses extends Component {
                 <td>{expense_item.approve_state}</td>
                 <td>
                     <button
-
+                     onClick={this.props.approveExpense.bind(this, expense_item)}
                     className="btn btn-danger btn-sm"
                   >
                     {" "}
@@ -63,7 +64,7 @@ export class Expenses extends Component {
         )
     }
 }
-//  onClick={this.props.deleteLead.bind(this, lead.id)}
+//
 
 const mapStateToProps = state => ({
   expenses: state.expenses.expenses
@@ -71,6 +72,6 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getExpenses }
+  { getExpenses, approveExpense }
 )(Expenses);
 

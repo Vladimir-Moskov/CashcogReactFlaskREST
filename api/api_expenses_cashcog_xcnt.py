@@ -5,9 +5,12 @@ from api.resources.expense import ExpenseAPI, EmployeeAPI, ExpenseApproveAPI, Ap
 from flask_sqlalchemy import SQLAlchemy
 
 from flask_restful import reqparse, abort, Api, Resource
+from flask_cors import CORS
 
 app = Flask(__name__)
 api = Api(app, prefix=Config.SERVER_NAME_API_APP)
+# add CORS for frontend cross domain policy
+cors = CORS(app)
 
 app.config.from_object(Config)
 db = SQLAlchemy(app)
