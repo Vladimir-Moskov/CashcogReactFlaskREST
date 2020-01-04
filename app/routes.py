@@ -1,7 +1,7 @@
 from flask import request
 from flask import render_template
 from app import app, app_blueprint
-from app.models import Expense, Employee, ApplicationRequestLog
+from app.models import Expense, Employee, ApplicationRequestLog, ApplicationType
 from functools import wraps
 from app.config import Config
 
@@ -10,7 +10,7 @@ from app.config import Config
 def log_request(func):
     @wraps(func)
     def decorated(*args, **kwargs):
-        ApplicationRequestLog.query_add(request, )
+        ApplicationRequestLog.query_add(request, ApplicationType.WEB_APP.name)
         return func(*args, **kwargs)
 
     return decorated

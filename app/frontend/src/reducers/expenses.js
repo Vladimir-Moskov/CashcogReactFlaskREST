@@ -15,7 +15,15 @@ export default function (state = initialState, action) {
     case APPROVE_EXPENSE:
       return {
         ...state,
-        expenses: action.payload
+        expenses: state.expenses
+        // expenses: state.leads.filter(lead => lead.id !== action.payload)
+      };
+
+   case DISAPPROVE_EXPENSE:
+      return {
+        ...state,
+        expenses: state.expenses
+        // expenses: state.leads.filter(lead => lead.id !== action.payload)
       };
 
     default:

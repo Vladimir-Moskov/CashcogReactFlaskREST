@@ -1,7 +1,8 @@
 from flask_restful import reqparse, Resource
-from app.models import Expense, Employee, ApplicationRequestLog
+from app.models import Expense, Employee, ApplicationRequestLog, ApplicationType
 from app.models import ExpenseSchema, EmployeeSchema, ApplicationRequestLogSchema
 from flask import request
+from functools import wraps
 
 # parser = reqparse.RequestParser()
 # parser.add_argument('expense_id', type=int, help='expense_id')
@@ -9,22 +10,33 @@ from flask import request
 # use {'Access-Control-Allow-Origin': '*'} for cross domain policy
 
 
+def log_request(func):
+    @wraps(func)
+    def decorated(*args, **kwargs):
+        ApplicationRequestLog.query_add(request, ApplicationType.REST_API.name)
+        return func(*args, **kwargs)
+
+    return decorated
+
+
 class ExpenseAPI(Resource):
     """
 
     """
-
+    @log_request
     def get(self, expense_id: int = None):
         query_data = Expense.query_get_all(expense_id)
         result = ExpenseSchema().dump(query_data, many=(expense_id is None))
         return {'status': 'success', 'data': result}, 200, {'Access-Control-Allow-Origin': '*'}
 
+    @log_request
     def post(self):
         data = request.get_json()
         result = ExpenseSchema().dump(Expense.query_add_from_json(data), many=False)
         return {'status': 'success', 'data': result}, 201, {'Access-Control-Allow-Origin': '*'}
 
     # TODO implement put properly
+    @log_request
     def put(self, expense_id: int):
         data = request.get_json()
         result = ExpenseSchema().dump(Expense.query_add_from_json(data), many=False)
@@ -36,6 +48,7 @@ class ExpenseApproveAPI(Resource):
 
     """
 
+    @log_request
     def put(self, expense_id: int):
         data = request.get_json()
         result = ExpenseSchema().dump(Expense.query_approve_from_json(expense_id, data), many=False)
@@ -47,6 +60,7 @@ class EmployeeAPI(Resource):
 
     """
 
+    @log_request
     def get(self, employee_id: int = None):
         query_data = Employee.query_get_all(employee_id)
         result = EmployeeSchema().dump(query_data, many=(employee_id is None))
@@ -57,6 +71,7 @@ class ApplicationRequestLogAPI(Resource):
     """
 
     """
+    @log_request
     def get(self):
         top = request.args.get('top', 100)
         query_data = ApplicationRequestLog.query_get_all(top)

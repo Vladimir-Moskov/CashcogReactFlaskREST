@@ -43,13 +43,13 @@ class ApplicationRequestLog(db.Model):
         db.session.commit()
 
     @classmethod
-    def query_add(cls, request) -> None:
+    def query_add(cls, request, application_type=ApplicationType.WEB_APP.name) -> None:
         new_row = cls(remote_addr=request.remote_addr,
                       url=request.url,
                       method=request.method,
                       user_agent=str(request.user_agent),
                       remote_user=request.remote_user,
-                      application_type=ApplicationType.WEB_APP.name)
+                      application_type=application_type)
         db.session.add(new_row)
         db.session.commit()
 
@@ -243,8 +243,10 @@ class Expense(db.Model):
     @classmethod
     def query_approve_from_json(cls, expense_id: int, json_item: Dict) -> None:
         #try:
-        new_status = ApproveStateEnum[json_item['approve']].value
-        user = json_item['user']
+        new_status = json_item['approve'] # TODO: validate value
+        # new_status = ApproveStateEnum[json_item['approve']].value
+        # user = json_item['user']
+        user = "current_user"
         cls.query_approve(expense_id, new_status, user)
         #except:
         #    print("ERROR: json_item")
