@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { NavLink } from "react-router-dom";
 
 export class Header extends Component {
 
@@ -17,16 +17,16 @@ export class Header extends Component {
                 <a className="navbar-brand" href="#">Interview XCNT GmbH </a>
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item active">
-                        <a className="nav-link" href=".">Home <span className="sr-only">(current)</span></a>
+                        <NavLink className="nav-link" to="/">Home<span className="sr-only">(current)</span></NavLink>
                     </li>
                     <li className="nav-item active">
-                        <a className="nav-link" href="./expenses"> Employee DATA <span className="sr-only">(current)</span></a>
+                         <NavLink className="nav-link" to="/expenses">Expenses<span className="sr-only">(current)</span></NavLink>
                     </li>
                     <li className="nav-item active">
-                        <a className="nav-link" href="./employee"> Employee DATA <span className="sr-only">(current)</span></a>
+                         <NavLink className="nav-link" to="/employees">Employees<span className="sr-only">(current)</span></NavLink>
                     </li>
                     <li className="nav-item active">
-                        <a className="nav-link" href="./logs"> Application LOGS <span className="sr-only">(current)</span></a>
+                         <NavLink className="nav-link" to="/Logs">Home<span className="sr-only">(current)</span></NavLink>
                     </li>
                 </ul>
               </div>
@@ -35,7 +35,6 @@ export class Header extends Component {
 
   }
 }
-
 
 export default Header
 

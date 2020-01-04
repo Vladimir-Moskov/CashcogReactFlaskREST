@@ -44,14 +44,7 @@ export class Logs extends Component {
                   <td>{log_item.user_agent}</td>
                      <td>{log_item.remote_user}</td>
                 <td>{log_item.application_type}</td>
-                <td>
-                    <button
-                    className="btn btn-danger btn-sm"
-                  >
-                    {" "}
-                    Delete
-                  </button>
-                </td>
+
               </tr>
             ))}
           </tbody>

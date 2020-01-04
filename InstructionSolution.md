@@ -1,6 +1,7 @@
 npm i -D webpack webpack webpack-cli
 npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
 npm i react react-dom prop-types
+npm i react-router-dom
 
 npm run dev
 npm run build
