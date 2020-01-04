@@ -60,4 +60,4 @@ class ApplicationRequestLogAPI(Resource):
         top = request.args.get('top', 100)
         query_data = ApplicationRequestLog.query_get_all(top)
         result = ApplicationRequestLogSchema().dump(query_data, many=True)
-        return {'status': 'success', 'data': result}, 200
+        return {'status': 'success', 'data': result}, 200, {'Access-Control-Allow-Origin': '*'}

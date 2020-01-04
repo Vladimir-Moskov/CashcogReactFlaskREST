@@ -25,6 +25,9 @@ export class Header extends Component {
                     <li className="nav-item active">
                         <a className="nav-link" href="./employee"> Employee DATA <span className="sr-only">(current)</span></a>
                     </li>
+                    <li className="nav-item active">
+                        <a className="nav-link" href="./logs"> Application LOGS <span className="sr-only">(current)</span></a>
+                    </li>
                 </ul>
               </div>
             </nav>
