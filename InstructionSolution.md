@@ -25,10 +25,31 @@
             |--- api_api_expenses_cashcog_xcnt.py (requests routing - controller)
 
         |--- app (web application + flask infrastructural components)
+            |
+            |--- frontend (all REACT front end there)
+            |   |--- ....
+            |--- static (some static files (*.css, *.js, *.ico) for frontend)
+            |   |--- ....
+            |--- templates (plain html pages - for debugging purpose)
+            |   |--- ....
+            |
+            |--- __init__.py (Flask app setup - imports)
+            |
+            |--- app_expenses_cashcog_xcnt.py (run it to start web application )
+            |
+            |--- cashcog_expenses.db (SQLLite db file)
+            |
+            |--- config.py (application configuration and setting variables)
+            |
+            |--- models.py (ORM - applications data model)
+            |
+            |--- routes (web application url mapping)
 
         |--- cashcogstreamlistener (application to read data from stream)
             |
-            |---
+            |--- clear_all_db.py (simple clean db script, just for case)
+            |
+            |--- streamlistener.py (start this app to read and save data from stream)
 
 ## Project repository
 > https://github.com/Vladimir-Moskov/InterviewXCNTGmbH
