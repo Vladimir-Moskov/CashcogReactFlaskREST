@@ -5,4 +5,4 @@ export const APPROVE_EXPENSE = "APPROVE_EXPENSE";
 export const DISAPPROVE_EXPENSE = "DISAPPROVE_EXPENSE";
 
 export const APPROVE_VALUE = 1;
-export const DISAPPROVE_VALUE = 0;
+export const DISAPPROVE_VALUE = 2;

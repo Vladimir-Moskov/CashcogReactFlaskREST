@@ -1,4 +1,3 @@
-# TODO: join employee for expense table
 # TODO: table filter/query/sort
 
 # Here is solution

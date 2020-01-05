@@ -36,7 +36,8 @@ class ExpenseAPI(Resource):
         :param expense_id:
         :return: JSON data, response code, header
         """
-        query_data = Expense.query_get_all(expense_id)
+        # query_data = Expense.query_get_all(expense_id)
+        query_data = Expense.query_get_all_join_employee(expense_id)
         result = ExpenseSchema().dump(query_data, many=(expense_id is None))
         return {'status': 'success', 'data': result}, 200, {'Access-Control-Allow-Origin': '*'}
 

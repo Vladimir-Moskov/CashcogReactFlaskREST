@@ -236,12 +236,15 @@ class Expense(db.Model):
             return cls.query.all()
 
     @classmethod
-    def query_get_all_join_employee(cls) -> Optional[Any]:
+    def query_get_all_join_employee(cls, expense_id: int = None) -> Optional[Any]:
         """
         get expenses data with joined employee
         :return: records from DB
         """
-        records = cls.query.join(Employee).all()
+        if expense_id:
+            return cls.query.join(Employee).filter_by(id=expense_id).first()
+        else:
+            records = cls.query.join(Employee).all()
         return records
 
     @classmethod
@@ -357,20 +360,24 @@ class Expense(db.Model):
         print(json_item)
 
 
-class ExpenseSchema(marshmallow.ModelSchema):
-    """
-    use it for Expense serialization
-    """
-    class Meta:
-        model = Expense
-
-
 class EmployeeSchema(marshmallow.ModelSchema):
     """
        use it for employee serialization
     """
     class Meta:
         model = Employee
+
+
+class ExpenseSchema(marshmallow.ModelSchema):
+    """
+    use it for Expense serialization
+    """
+    class Meta:
+        model = Expense
+        fields = ('id', 'uuid', 'description', 'created_at', 'currency', 'amount',
+                  'employee', 'approve_state', 'approved_by', 'approved_datetime')
+
+    employee = marshmallow.Nested(EmployeeSchema)
 
 
 class ApplicationRequestLogSchema(marshmallow.ModelSchema):
