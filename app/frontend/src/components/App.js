@@ -9,17 +9,15 @@ import { HashRouter } from "react-router-dom";
 class App extends Component {
     render(){
          return (
-           <Provider store={store}>
-             <Fragment>
+             <Provider store={store}>
                <HashRouter>
-                <Header/>
-                <div className="container">
-                    <Dashboard/>
-                </div>
+                    <Header/>
+                    <div className="container">
+                        <Dashboard/>
+                    </div>
                 </HashRouter>
-             </Fragment>
              </Provider>
-           )
+         )
     }
 }
 

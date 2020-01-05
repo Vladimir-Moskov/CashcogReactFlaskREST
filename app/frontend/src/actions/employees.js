@@ -12,7 +12,6 @@ export const getEmployees = () => (dispatch, getState) => {
       });
     })
     .catch(err =>console.log(err)
-
       //dispatch(returnErrors(err.response.data, err.response.status))
     );
 };

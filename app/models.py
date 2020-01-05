@@ -224,13 +224,13 @@ class Expense(db.Model):
 
     @classmethod
     def query_add_from_json(cls, json_item: Dict) -> None:
-        #try:
-        new_employee_id = Employee.add_item(json_item["employee"])
-        if new_employee_id > 0:
-            cls.add_item(json_item, new_employee_id)
-        #except:
-        #    print("ERROR: add_from_json")
-        print(json_item)
+        try:
+            new_employee_id = Employee.add_item(json_item["employee"])
+            if new_employee_id > 0:
+                cls.add_item(json_item, new_employee_id)
+        except Exception as error:
+            print(f"ERROR: add_from_json = {repr(error)}")
+        # print(json_item)
 
     @classmethod
     def query_approve(cls, expense_id: int, approve_state: int, approved_by: str) -> None:

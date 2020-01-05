@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getEmployees } from "../../actions/employees";
+import { Table } from 'react-bootstrap';
 
 export class Employees extends Component {
     static propTypes = {
@@ -15,10 +16,10 @@ export class Employees extends Component {
 
     render(){
         return (
-
-        <Fragment>
+        <div>
         <h2>Employees</h2>
-        <table className="table table-striped">
+        <Table striped bordered hover size="sm">
+        {/*<table className="table table-striped">*/}
           <thead>
             <tr>
               <th>ID</th>
@@ -42,8 +43,9 @@ export class Employees extends Component {
               </tr>
             ))}
           </tbody>
-        </table>
-      </Fragment>
+          </Table>
+         {/*</table>*/}
+         </div>
         )
     }
 }

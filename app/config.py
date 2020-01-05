@@ -36,11 +36,12 @@ class Config(object):
     CASHCOG_STREAM_URL = "https://cashcog.xcnt.io/stream"
     CASHCOG_SINGLE_URL = "https://cashcog.xcnt.io/single"
 
+    # comment this line and uncomment the next one in order to use api for data insertion from stream
     UPDATE_FROM_STREAM = StreamDataInjectionType.DIRECT_DB_DATA_INSERT
     # Implement 'microservices' approach
     # UPDATE_FROM_STREAM = StreamDataInjectionType.USE_API_POST_DATA
-    # APPLICATION_ROOT = SERVER_NAME_WEB_APP
-    # SCRIPT_NAME = SERVER_NAME_WEB_APP
-    # SERVER_NAME = 'localhost:' + PORT_WEB_APP
+
+    EXPENSE_API_ADD = f"http://127.0.0.1:{PORT_API_APP}{SERVER_NAME_API_APP}/expense"
+
 
 

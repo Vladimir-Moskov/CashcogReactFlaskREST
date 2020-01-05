@@ -6,6 +6,7 @@ npm i react-router-dom
 npm run dev
 npm run build
 npm i axios react-alert  react-redux react-router-dom redux redux-devtools-extension redux-thunk
+npm install
 
 --watch
 
@@ -23,11 +24,11 @@ http://127.0.0.1:5000/cashcogXCNT/api/v1/expense/1
   2. SQLAlchemy and ORM to deal with data model
   3. flask_migrate Migrate to manage DB changes(add/update/delete table/field/model)
   4. web application page mapping in app/routes
-  5. batch job has been implemented as independent part of the system - here batch/steel_processing_batch.py
+  5. batch job has been implemented as independent part of the system - here batch/..._processing_batch.py
 
 
 ## Project repository
-> https://github.com/Vladimir-Moskov/InterviewSmartSteelTechnologiesGmbH
+> https://github.com/Vladimir-Moskov/InterviewXCNTGmbH
 
 ## From point of view MVP (Minimum Valuable Product)
 
@@ -60,13 +61,13 @@ http://127.0.0.1:5000/cashcogXCNT/api/v1/expense/1
    > pip install virtualenv
 
  5. set project folder as you current folder
-    > cd   your_local_folder/InterviewSmartSteelTechnologiesGmbH
+    > cd   your_local_folder/InterviewXCNTGmbH
 
  6. Run next command in order to create virtualenv for project
    > virtualenv venv
 
  7. Activate virtual environment
-   > your_local_folder/InterviewSmartSteelTechnologiesGmbH/venv/Scripts/activate
+   > your_local_folder/InterviewXCNTGmbH/venv/Scripts/activate
 
  8. install project dependencies
 
@@ -84,7 +85,7 @@ http://127.0.0.1:5000/cashcogXCNT/api/v1/expense/1
     in case you miss some
 
  9. You do not need to setup/update DB - it has been added in to repository
-   > Data Base: sql lite in file InterviewSmartSteelTechnologiesGmbH/app/app.db
+   > Data Base: sql lite in file InterviewXCNTGmbH/app/cashcog_expenses.db
    Here are some commands how to dial with it in case you want to do modifications
     > flask db init
 
@@ -102,27 +103,27 @@ http://127.0.0.1:5000/cashcogXCNT/api/v1/expense/1
  ### Start data extractor
     > application that transfers `task_data.csv` to a database
     1. Here is where application located -
-        > InterviewSmartSteelTechnologiesGmbH/batch/steel_processing_batch.py
+        > InterviewXCNTGmbH/batch/....py
 
      which use given file `task_data.csv` from folder
-      > InterviewSmartSteelTechnologiesGmbH/resource
-      (this can be adjusted here - InterviewSmartSteelTechnologiesGmbH/app/config.py)
+      > InterviewXCNTGmbH/resource
+      (this can be adjusted here - InterviewXCNTGmbH/app/config.py)
 
     2. use command
-        > python InterviewSmartSteelTechnologiesGmbH/batch/steel_processing_batch.py
+        > python InterviewXCNTGmbH/batch/....py
       to run data transfer in to DB
 
     3. use clean DB script in case you want to repeat a test
-       > python InterviewSmartSteelTechnologiesGmbH/batch/clear_all_db.py
+       > python InterviewXCNTGmbH/cashcogstreamlistener/clear_all_db.py
 
  ### Start web application
     > web application that is able to connect to this database
 
     1.  Here is where application located -
-        > InterviewSmartSteelTechnologiesGmbH/app
+        > InterviewXCNTGmbH/app
 
     2. Run it with
-       >  python InterviewSmartSteelTechnologiesGmbH/app/smart_steel_technologies.py
+       >  python InterviewXCNTGmbH/app/app_expenses_cashcog_xcnt.py
 
     3. application will be started on
 
@@ -134,7 +135,7 @@ http://127.0.0.1:5000/cashcogXCNT/api/v1/expense/1
 
     4. To see DB data from file `task_data.csv` use this page
 
-       > http://localhost:5000/steelProcessing
+       > http://localhost:5000/CashcogXCNT-Expenses
 
     5. To see log data from DB use this page
 

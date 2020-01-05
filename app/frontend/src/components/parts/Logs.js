@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getLogs } from "../../actions/logs";
+import { Table } from 'react-bootstrap';
 
 export class Logs extends Component {
     static propTypes = {
@@ -15,21 +16,20 @@ export class Logs extends Component {
 
     render(){
         return (
-
-        <Fragment>
+        <div>
         <h2>Logs</h2>
-        <table className="table table-striped">
+        <Table striped bordered hover size="sm">
+        {/*<table className="table table-striped">*/}
           <thead>
             <tr>
               <th>ID</th>
               <th>TIME</th>
               <th>ADDRESS</th>
               <th>URL</th>
-                <th>METHOD</th>
-                  <th>AGENT</th>
-                    <th>USER</th>
-                     <th>TYPE</th>
-              <th />
+              <th>METHOD</th>
+              <th>AGENT</th>
+               {/*<th>USER</th>*/}
+              <th>TYPE</th>
             </tr>
           </thead>
           <tbody>
@@ -40,20 +40,20 @@ export class Logs extends Component {
                 <td>{log_item.timestamp}</td>
                 <td>{log_item.remote_addr}</td>
                 <td>{log_item.url}</td>
-                 <td>{log_item.method}</td>
-                  <td>{log_item.user_agent}</td>
-                     <td>{log_item.remote_user}</td>
+                <td>{log_item.method}</td>
+                <td>{log_item.user_agent}</td>
+                {  /*   <td>{log_item.remote_user}</td>*/}
                 <td>{log_item.application_type}</td>
 
               </tr>
             ))}
           </tbody>
-        </table>
-      </Fragment>
+        {/*</table>*/}
+        </Table>
+        </div>
         )
     }
 }
-//
 
 const mapStateToProps = state => ({
   logs: state.logs.logs

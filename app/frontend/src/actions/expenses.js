@@ -13,7 +13,6 @@ export const getExpenses = () => (dispatch, getState) => {
       });
     })
     .catch(err =>console.log(err)
-
       //dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
@@ -37,7 +36,6 @@ export const approveExpense = expense_item => (dispatch, getState) => {
        dispatch(getExpenses());
     })
     .catch(err =>console.log(err)
-
       //dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
@@ -59,7 +57,6 @@ export const disapproveExpense = expense_item => (dispatch, getState) => {
       dispatch(getExpenses());
     })
     .catch(err =>console.log(err)
-
       //dispatch(returnErrors(err.response.data, err.response.status))
     );
 };
