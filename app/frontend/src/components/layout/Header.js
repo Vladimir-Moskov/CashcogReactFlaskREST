@@ -23,7 +23,7 @@ export class Header extends Component {
                          <NavLink className="nav-link" to="/employees">Employees<span className="sr-only">(current)</span></NavLink>
                     </li>
                     <li className="nav-item active">
-                         <NavLink className="nav-link" to="/Logs">Logs<span className="sr-only">(current)</span></NavLink>
+                         <NavLink className="nav-link" to="/logs">Logs<span className="sr-only">(current)</span></NavLink>
                     </li>
                 </ul>
               </div>
