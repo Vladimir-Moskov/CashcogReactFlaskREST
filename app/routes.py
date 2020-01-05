@@ -1,5 +1,9 @@
 """
+    flask web application /CashcogXCNT-Expenses" routing / url mapping
+        SERVER_NAME_WEB_APP = "/CashcogXCNT-Expenses"
+        PORT_WEB_APP = "5000"
 
+    React one page application - statrts here 127.0.0.1:5000/CashcogXCNT-Expenses/
 """
 from flask import request
 from flask import render_template
@@ -33,25 +37,26 @@ def not_found(e):
     """
     return render_template('404.html', app_root=Config.SERVER_NAME_WEB_APP), 404
 
-
+# React app
 @app_blueprint.route('/')
 @app_blueprint.route('/index')
 @log_request
 def index():
     """
-        Welcome page
+        Welcome page - enter point for React one page application
     :return:
     """
     # return render_template('index.html', title='Welcome here',  app_root=Config.SERVER_NAME_WEB_APP,)
     return render_template('frontend/index.html', title='Welcome here',  app_root=Config.SERVER_NAME_WEB_APP,)
 
+
+# just plain html page for debug purpose
 @app_blueprint.route('/expenses')
 @log_request
 def expenses():
     """
-         Page with data from task_data.csv in order to solve
-         Serve the database data (from `task_data.csv`) in a _simple_ html format
-    :return:
+         Page with expenses data  from stream
+    :return: plain html page
     """
     # TODO - it is nice to have paging/filtering over data
     return render_template('expenses.html',
@@ -61,13 +66,13 @@ def expenses():
                            expenses_all=Expense.query_get_all())
 
 
+# just plain html page for debug purpose
 @app_blueprint.route('/employee')
 @log_request
 def employee():
     """
-         Page with data from task_data.csv in order to solve
-         Serve the database data (from `task_data.csv`) in a _simple_ html format
-    :return:
+    Page with employees data  from stream
+    :return: plain html page
     """
     # TODO - it is nice to have paging/filtering over data
     return render_template('employee.html',
@@ -77,13 +82,14 @@ def employee():
                            employee_all=Employee.query_get_all())
 
 
+# just plain html page for debug purpose
 @app_blueprint.route('/log')
 @log_request
 def log():
     """
          Page with data from user requests log in order to solve -
-         "On each GET request, log that the data was requested (in the same database)"
-    :return:
+         "On each GET/POST/PUT request, log that the data was requested (in the same database)"
+    :return: plain html page
     """
     # TODO - it is nice to have paging/filtering over data
     return render_template('applicationLog.html',
