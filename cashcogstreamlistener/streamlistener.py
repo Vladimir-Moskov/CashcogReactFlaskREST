@@ -38,7 +38,7 @@ def start_read_stream():
 
 def save_expense_from_stream(expense_obj):
     """
-
+    save one expense item
     :param line_obj:
     :return:
     """

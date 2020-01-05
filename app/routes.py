@@ -1,3 +1,6 @@
+"""
+
+"""
 from flask import request
 from flask import render_template
 from app import app, app_blueprint
@@ -6,8 +9,12 @@ from functools import wraps
 from app.config import Config
 
 
-# user request logging decorator
 def log_request(func):
+    """
+    user request logging decorator
+    :param func: decorated function
+    :return: decorator
+    """
     @wraps(func)
     def decorated(*args, **kwargs):
         ApplicationRequestLog.query_add(request, ApplicationType.WEB_APP.name)
