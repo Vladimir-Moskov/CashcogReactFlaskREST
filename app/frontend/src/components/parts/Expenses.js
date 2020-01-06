@@ -5,19 +5,14 @@ import { getExpenses, approveExpense, disapproveExpense } from "../../actions/ex
 import { APPROVE_VALUE, DISAPPROVE_VALUE} from "../../actions/types";
 
 // Import React Table
-//import { ReactTable }  from "react-table";
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-// import "react-table/react-table.css";
+
 
  const approvedType = {
       0: 'None',
       1: 'Approved',
       2: 'Disapproved'
     };
-/*
-function enumFormatter(cell, row, enumObject) {
-  return enumObject[cell];
-}*/
 
 class ApprovedFormatter extends React.Component {
   render() {
@@ -41,8 +36,7 @@ class ApprovedButtonFormatter extends React.Component {
        { this.props.approve_state == APPROVE_VALUE ?
 
         (<button
-           /*onClick={this.props.disapproveExpense.bind(this, expense_item)}*/
-            onClick={this.props.parent.props.disapproveExpense.bind(this.props.parent, expense_item)}
+            onClick={this.props.parent.props.disapproveExpense.bind(this.props.parent, this.props.expense_item)}
             className="btn btn-danger btn-sm"
           >
             {" "}
@@ -50,7 +44,7 @@ class ApprovedButtonFormatter extends React.Component {
           </button>) :
           (
              <button
-            /* onClick={this.props.approveExpense.bind(this, expense_item)}*/
+             onClick={this.props.parent.props.approveExpense.bind(this.props.parent, this.props.expense_item)}
             className="btn btn-primary"
           >
             {" "}
@@ -68,37 +62,15 @@ function approveFormatter(cell, row) {
     <ApprovedFormatter approve_state={ cell } />
   );
 }
-/*
-function approvedButtonFormatter(cell, row) {
-  return (
-    <ApprovedButtonFormatter approve_state={ cell } expense_item={ row } parent={ this }/>
-  );
-}
-*/
 
 export class Expenses extends Component {
-    /*constructor(props) {
-        super(props);
 
-        this.options = {
-          defaultSortName: 'name',  // default sort column name
-          defaultSortOrder: 'desc'  // default sort order
-        };
-      }*/
-
-     /*approvedButtonFormatter(cell, row) {
-      let parent = this;
-      return (
-        <ApprovedButtonFormatter approve_state={ cell } expense_item={ row } parent={ parent }/>
-      );
-    }*/
     approvedButtonFormatter() {
-      //let parent = this;
-      return (cell, row, parent = this) => {
-        (<ApprovedButtonFormatter approve_state={ cell } expense_item={ row } parent={ parent }/>);
+      let parentVal = this;
+      return (cell, row) => {
+        return (<ApprovedButtonFormatter approve_state={ cell } expense_item={ row } parent={ parentVal }/>);
       }
     }
-
     static propTypes = {
         expenses: PropTypes.array.isRequired,
         getExpenses: PropTypes.func.isRequired,
@@ -120,7 +92,8 @@ export class Expenses extends Component {
             <h2>Expenses</h2>
             <BootstrapTable data={ this.props.expenses } options={ this.options } striped hover condensed pagination version='4'>
               <TableHeaderColumn dataField='id' isKey dataSort={ true }>ID</TableHeaderColumn>
-              <TableHeaderColumn dataField='description'> DESCRIPTION </TableHeaderColumn>
+              <TableHeaderColumn dataField='employee_name' dataSort={ true }>EMPLOYEE</TableHeaderColumn>
+              {/*<TableHeaderColumn dataField='description'> DESCRIPTION </TableHeaderColumn>*/}
               <TableHeaderColumn dataField='created_at' dataSort={ true }  filter={ { type: 'DateFilter' } }> CREATED </TableHeaderColumn>
               <TableHeaderColumn dataField='currency' dataSort={ true }>CURRENCY</TableHeaderColumn>
               <TableHeaderColumn dataField='amount' filter={ { type: 'TextFilter', delay: 1000 } } dataSort={ true }>AMOUNT</TableHeaderColumn>

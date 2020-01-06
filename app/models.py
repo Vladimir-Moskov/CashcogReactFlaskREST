@@ -9,6 +9,7 @@ from datetime import datetime
 from app.config import ApplicationType
 from enum import Enum
 from typing import List, Optional, Any, Dict
+from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class ApplicationRequestLog(db.Model):
@@ -203,6 +204,13 @@ class Expense(db.Model):
     approved_by = db.Column(db.String(100), nullable=True)
     approved_datetime = db.Column(db.DateTime, nullable=True)
 
+    @hybrid_property
+    def employee_name(self):
+        if self.employee:
+            return f"{self.employee.first_name} {self.employee.last_name}"
+        else:
+            return ""
+
     def __repr__(self) -> str:
         """
            Standard customization of class instance to string
@@ -375,9 +383,11 @@ class ExpenseSchema(marshmallow.ModelSchema):
     class Meta:
         model = Expense
         fields = ('id', 'uuid', 'description', 'created_at', 'currency', 'amount',
-                  'employee', 'approve_state', 'approved_by', 'approved_datetime')
+                  'employee', 'approve_state', 'approved_by', 'approved_datetime', 'employee_name')
 
     employee = marshmallow.Nested(EmployeeSchema)
+    # employee_name = employee.shema.Meta.model.first_name
+    # print(employee_name)
 
 
 class ApplicationRequestLogSchema(marshmallow.ModelSchema):
