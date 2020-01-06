@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getEmployees } from "../../actions/employees";
-import { Table } from 'react-bootstrap';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 export class Employees extends Component {
     static propTypes = {
@@ -18,38 +18,18 @@ export class Employees extends Component {
         return (
         <div>
         <h2>Employees</h2>
-        <Table striped bordered hover size="sm">
-        {/*<table className="table table-striped">*/}
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>UUID</th>
-              <th>FIRST NAME</th>
-              <th>LAST NAME</th>
-              <th>CREATED AT</th>
-              <th>EXPENSE ID</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            {this.props.employees.map(employee_item => (
-              <tr key={employee_item.id}>
-                <td>{employee_item.id}</td>
-                <td>{employee_item.uuid}</td>
-                <td>{employee_item.first_name}</td>
-                <td>{employee_item.last_name}</td>
-                <td>{employee_item.created_at}</td>
-                <td>{employee_item.expense}</td>
-              </tr>
-            ))}
-          </tbody>
-          </Table>
-         {/*</table>*/}
+         <BootstrapTable data={ this.props.employees } striped hover condensed pagination version='4'>
+              <TableHeaderColumn dataField='id' isKey dataSort={ true }>ID</TableHeaderColumn>
+              <TableHeaderColumn dataField='uuid' dataSort={ true }>UUID</TableHeaderColumn>
+              <TableHeaderColumn dataField='first_name' dataSort={ true } > FIRST NAME</TableHeaderColumn>
+              <TableHeaderColumn dataField='last_name' dataSort={ true }>LAST NAME</TableHeaderColumn>
+              <TableHeaderColumn dataField='created_at' dataSort={ true }>CREATED AT</TableHeaderColumn>
+              <TableHeaderColumn dataField='expense' dataSort={ true }>EXPENSE ID</TableHeaderColumn>
+            </BootstrapTable>
          </div>
         )
     }
 }
-//
 
 const mapStateToProps = state => ({
   employees: state.employees.employees

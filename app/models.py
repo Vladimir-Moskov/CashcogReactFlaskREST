@@ -386,8 +386,6 @@ class ExpenseSchema(marshmallow.ModelSchema):
                   'employee', 'approve_state', 'approved_by', 'approved_datetime', 'employee_name')
 
     employee = marshmallow.Nested(EmployeeSchema)
-    # employee_name = employee.shema.Meta.model.first_name
-    # print(employee_name)
 
 
 class ApplicationRequestLogSchema(marshmallow.ModelSchema):

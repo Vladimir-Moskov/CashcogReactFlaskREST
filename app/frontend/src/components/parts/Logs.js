@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getLogs } from "../../actions/logs";
-import { Table } from 'react-bootstrap';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 export class Logs extends Component {
     static propTypes = {
@@ -17,39 +17,16 @@ export class Logs extends Component {
     render(){
         return (
         <div>
-        <h2>Logs</h2>
-        <Table striped bordered hover size="sm">
-        {/*<table className="table table-striped">*/}
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>TIME</th>
-              <th>ADDRESS</th>
-              <th>URL</th>
-              <th>METHOD</th>
-              <th>AGENT</th>
-               {/*<th>USER</th>*/}
-              <th>TYPE</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            {this.props.logs.map(log_item => (
-              <tr key={log_item.id}>
-                <td>{log_item.id}</td>
-                <td>{log_item.timestamp}</td>
-                <td>{log_item.remote_addr}</td>
-                <td>{log_item.url}</td>
-                <td>{log_item.method}</td>
-                <td>{log_item.user_agent}</td>
-                {  /*   <td>{log_item.remote_user}</td>*/}
-                <td>{log_item.application_type}</td>
-
-              </tr>
-            ))}
-          </tbody>
-        {/*</table>*/}
-        </Table>
+            <h2>Logs</h2>
+           <BootstrapTable data={ this.props.logs } striped hover condensed pagination version='4'>
+              <TableHeaderColumn dataField='id' isKey dataSort={ true }>ID</TableHeaderColumn>
+              <TableHeaderColumn dataField='timestamp' dataSort={ true }>TIME</TableHeaderColumn>
+              <TableHeaderColumn dataField='remote_addr' dataSort={ true } > ADDRESS</TableHeaderColumn>
+              <TableHeaderColumn dataField='url' dataSort={ true }>URL</TableHeaderColumn>
+              <TableHeaderColumn dataField='method' dataSort={ true }>METHOD</TableHeaderColumn>
+              <TableHeaderColumn dataField='user_agent' dataSort={ true }>AGENT</TableHeaderColumn>
+              <TableHeaderColumn dataField='application_type' dataSort={ true }>TYPE</TableHeaderColumn>
+            </BootstrapTable>
         </div>
         )
     }
