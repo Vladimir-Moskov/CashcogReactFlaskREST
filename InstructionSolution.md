@@ -1,5 +1,3 @@
-# TODO: table filter/query/sort
-
 # Here is solution
   1. Flask ecosystem has been used to implement task
   2. SQLAlchemy and ORM to deal with data model
