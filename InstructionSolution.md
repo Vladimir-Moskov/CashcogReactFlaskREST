@@ -64,7 +64,7 @@
 
 4. TODO: fix time zone
 
-5. # TODO: add better exception handling
+5. TODO: add better exception handling
 
 
 ## Project setup steps (Windows only)
@@ -119,7 +119,6 @@
 
     > flask db upgrade
 
- 10.
 
 ## Front end setup (React-Redux single page application)
 
@@ -129,9 +128,12 @@
      > npm install
 
    3. run command to 'compile'/build frontend
-    > npm run dev
+   
+   > npm run dev
+    
     or
-    > npm run build
+   
+   > npm run build
 
     4. add  --watch in to "webpack --mode development" line in package.json
        if you want to rebuild automatically on every change
