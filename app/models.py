@@ -282,6 +282,13 @@ class Expense(db.Model):
         :param employee_id:
         :return: is expense has already been created
         """
+
+        # TODO: here is example of implementation which is not scales very well,
+        #  validation should be done at the same time as insertion
+        #  just try/except for  db.session.add(new_row) will be a better option,
+        #  - in case of sql error "id has already exists" it will be captured and
+        #  new_row can be returned as duplicated entity
+
         # check if row with the same id already exists
         exists = cls.query.filter_by(uuid=uuid).first()
         if not exists:
