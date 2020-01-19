@@ -23,16 +23,16 @@ https://cashcog.xcnt.io/single
 
 Cashcog expense example event:
 {
-"uuid": "92b19fc6-5386-4985-bf5c-dc56c903dd23",
-"description": "Itaque fugiat repellendus velit deserunt praesentium.",
-"created_at": "2019-09-22T23:07:01",
-"amount": 2291,
-"currency": "UZS",
-"employee": {
-"uuid": "858142ac-299a-48f0-b221-7d6de9439454",
-"first_name": "Birthe",
-"last_name": “Meier"
-}
+    "uuid": "92b19fc6-5386-4985-bf5c-dc56c903dd23",
+    "description": "Itaque fugiat repellendus velit deserunt praesentium.",
+    "created_at": "2019-09-22T23:07:01",
+    "amount": 2291,
+    "currency": "UZS",
+    "employee": {
+        "uuid": "858142ac-299a-48f0-b221-7d6de9439454",
+        "first_name": "Birthe",
+        "last_name": “Meier"
+        }
 }
 
 Part 1 – BE-Part
