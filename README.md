@@ -1,4 +1,4 @@
-# Home work for X*C*N*T**** ***GmbH
+# Home work for *X-C-N-T**** ***GmbH
 
 Hi Volodymyr,
 
