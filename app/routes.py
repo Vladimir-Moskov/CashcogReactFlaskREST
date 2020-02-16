@@ -1,9 +1,9 @@
 """
-    flask web application /CashcogXCNT-Expenses" routing / url mapping
-        SERVER_NAME_WEB_APP = "/CashcogXCNT-Expenses"
+    flask web application /CashcogReact-Expenses" routing / url mapping
+        SERVER_NAME_WEB_APP = "/CashcogReact-Expenses"
         PORT_WEB_APP = "5000"
 
-    React one page application - statrts here 127.0.0.1:5000/CashcogXCNT-Expenses/
+    React one page application - statrts here 127.0.0.1:5000/CashcogReact-Expenses/
 """
 from flask import request
 from flask import render_template
@@ -61,7 +61,7 @@ def expenses():
     # TODO - it is nice to have paging/filtering over data
     return render_template('expenses.html',
                            app_root=Config.SERVER_NAME_WEB_APP,
-                           title='XCNT Expenses',
+                           title='Cashcog Expenses',
                            headers=Expense.headers(),
                            expenses_all=Expense.query_get_all())
 
@@ -77,7 +77,7 @@ def employee():
     # TODO - it is nice to have paging/filtering over data
     return render_template('employee.html',
                            app_root=Config.SERVER_NAME_WEB_APP,
-                           title='XCNT Employee',
+                           title='Cashcog Employee',
                            headers=Employee.headers(),
                            employee_all=Employee.query_get_all())
 

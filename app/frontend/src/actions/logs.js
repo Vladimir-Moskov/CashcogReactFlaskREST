@@ -4,7 +4,7 @@ import { GET_LOGS } from "./types";
 // GET GET_LOGS
 export const getLogs = () => (dispatch, getState) => {
   axios
-    .get("http://127.0.0.1:5001/cashcogXCNT/api/v1/logs")
+    .get("http://127.0.0.1:5001/cashcogReact/api/v1/logs")
     .then(res => {
       dispatch({
         type: GET_LOGS,

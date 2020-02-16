@@ -11,7 +11,7 @@ from flask_marshmallow import Marshmallow
 
 # setup flask application
 app = Flask(__name__)
-app_blueprint = Blueprint("blueprint_cashcog_xcnt", __name__, template_folder='templates')
+app_blueprint = Blueprint("blueprint_cashcog_react", __name__, template_folder='templates')
 
 # add configuration to it
 app.config.from_object(Config)

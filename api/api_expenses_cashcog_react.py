@@ -3,7 +3,7 @@
     independent API  application itself - just run in to start server
     started on
         PORT_API_APP = "5001"
-        SERVER_NAME_API_APP = "/cashcogXCNT/api/v1"
+        SERVER_NAME_API_APP = "/cashcogReact/api/v1"
 """
 from flask import Flask
 from app.config import Config

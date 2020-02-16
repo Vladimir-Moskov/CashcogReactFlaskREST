@@ -32,12 +32,12 @@ class Config(object):
     DEBUG_GLOBAL = True
 
     # wep app port and name
-    SERVER_NAME_WEB_APP = "/CashcogXCNT-Expenses"
+    SERVER_NAME_WEB_APP = "/CashcogReact-Expenses"
     PORT_WEB_APP = "5000"
 
     # wep app port
     PORT_API_APP = "5001"
-    SERVER_NAME_API_APP = "/cashcogXCNT/api/v1"
+    SERVER_NAME_API_APP = "/cashcogReact/api/v1"
 
     # Setup Database driver/ connect to DB
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \

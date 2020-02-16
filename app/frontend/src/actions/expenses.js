@@ -5,7 +5,7 @@ import { APPROVE_VALUE, DISAPPROVE_VALUE} from "./types";
 // GET GET_EXPENSES
 export const getExpenses = () => (dispatch, getState) => {
   axios
-    .get("http://127.0.0.1:5001/cashcogXCNT/api/v1/expenses")
+    .get("http://127.0.0.1:5001/cashcogReact/api/v1/expenses")
     .then(res => {
       dispatch({
         type: GET_EXPENSES,
@@ -23,7 +23,7 @@ const header_put = { 'Content-Type': 'application/json;charset=UTF-8',
 export const approveExpense = expense_item => (dispatch, getState) => {
   expense_item['approve'] = APPROVE_VALUE;
   axios
-    .put(`http://127.0.0.1:5001/cashcogXCNT/api/v1/expense/${expense_item.id}/approve`,
+    .put(`http://127.0.0.1:5001/cashcogReact/api/v1/expense/${expense_item.id}/approve`,
         expense_item,
        {
         headers: header_put
@@ -44,7 +44,7 @@ export const approveExpense = expense_item => (dispatch, getState) => {
 export const disapproveExpense = expense_item => (dispatch, getState) => {
   expense_item['approve'] = DISAPPROVE_VALUE;
   axios
-    .put(`http://127.0.0.1:5001/cashcogXCNT/api/v1/expense/${expense_item.id}/approve`,
+    .put(`http://127.0.0.1:5001/cashcogReact/api/v1/expense/${expense_item.id}/approve`,
         expense_item,
        {
         headers: header_put

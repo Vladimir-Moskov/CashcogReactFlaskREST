@@ -4,7 +4,7 @@ import { GET_EMPLOYEES } from "./types";
 // GET GET_EMPLOYEES
 export const getEmployees = () => (dispatch, getState) => {
   axios
-    .get("http://127.0.0.1:5001/cashcogXCNT/api/v1/employees")
+    .get("http://127.0.0.1:5001/cashcogReact/api/v1/employees")
     .then(res => {
       dispatch({
         type: GET_EMPLOYEES,

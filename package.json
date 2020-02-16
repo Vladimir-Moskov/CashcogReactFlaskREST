@@ -1,7 +1,7 @@
 {
-  "name": "appXCNTfrontend",
+  "name": "appCashcogReactfrontend",
   "version": "1.0.0",
-  "description": "React frontend for XCNT",
+  "description": "React frontend for Cashcog home work",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development  ./app/frontend/src/index.js --output ./app/static/frontend/main.js",

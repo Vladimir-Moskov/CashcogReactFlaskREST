@@ -3,23 +3,23 @@
   2. SQLAlchemy and ORM to deal with data model
   3. flask_migrate Migrate to manage DB changes(add/update/delete table/field/model)
   4. single page web application page mapping in app/routes -
-            SERVER_NAME_WEB_APP = "/CashcogXCNT-Expenses"
+            SERVER_NAME_WEB_APP = "/CashcogReact-Expenses"
             PORT_WEB_APP = "5000"
   5. api application endpoint here
         PORT_API_APP = "5001"
-        SERVER_NAME_API_APP = "/cashcogXCNT/api/v1"
+        SERVER_NAME_API_APP = "/cashcogReact/api/v1"
   6. stream listener/reader - here ./cashcogstreamlistener
 
 # The simple architecture behind this
 
-    InterviewXCNTGmbH (source code root)
+    CashcogReactFlaskREST (source code root)
         |
         |--- api ( micro service - rest api application )
             |
             |--- resources ("data model"/ controller)
             |    |--- expense.py (implementation "data model")
             |
-            |--- api_api_expenses_cashcog_xcnt.py (requests routing - controller)
+            |--- api_api_expenses_cashcog_react.py (requests routing - controller)
 
         |--- app (web application + flask infrastructural components)
             |
@@ -32,7 +32,7 @@
             |
             |--- __init__.py (Flask app setup - imports)
             |
-            |--- app_expenses_cashcog_xcnt.py (run it to start web application )
+            |--- app_expenses_cashcog_react.py (run it to start web application )
             |
             |--- cashcog_expenses.db (SQLLite db file)
             |
@@ -49,7 +49,7 @@
             |--- streamlistener.py (start this app to read and save data from stream)
 
 ## Project repository
-> https://github.com/Vladimir-Moskov/InterviewXCNTGmbH
+> https://github.com/Vladimir-Moskov/CashcogReactFlaskREST
 
 ## From point of view MVP (Minimum Valuable Product)
 
@@ -83,13 +83,13 @@
    > pip install virtualenv
 
  5. set project folder as you current folder
-    > cd   your_local_folder/InterviewXCNTGmbH
+    > cd   your_local_folder/CashcogReactFlaskREST
 
  6. Run next command in order to create virtualenv for project
    > virtualenv venv
 
  7. Activate virtual environment
-   > your_local_folder/InterviewXCNTGmbH/venv/Scripts/activate
+   > your_local_folder/CashcogReactFlaskREST/venv/Scripts/activate
 
  8. install project dependencies
 
@@ -107,7 +107,7 @@
     in case you miss some module
 
  9. You do not need to setup/update DB - it has been added in to repository
-   > Data Base: sql lite in file InterviewXCNTGmbH/app/cashcog_expenses.db
+   > Data Base: sql lite in file CashcogReactFlaskREST/app/cashcog_expenses.db
    Here are some commands how to dial with it in case you want to do modifications
     > flask db init
 
@@ -143,56 +143,56 @@
     > Part 1 – BE-Part Consume the expense events provided by the Cashcog Expense-API
     > application that take data from stream - CASHCOG_STREAM_URL = "https://cashcog.xcnt.io/stream"
     1. Here is where application located -
-        > InterviewXCNTGmbH/cashcogstreamlistener/streamlistener.py
+        > CashcogReactFlaskREST/cashcogstreamlistener/streamlistener.py
 
      which use given stream endpoint - CASHCOG_STREAM_URL = "https://cashcog.xcnt.io/stream"
-      (this can be adjusted here - InterviewXCNTGmbH/app/config.py)
+      (this can be adjusted here - CashcogReactFlaskREST/app/config.py)
 
     2. use command
-        > python InterviewXCNTGmbH/cashcogstreamlistener/streamlistener.py
+        > python CashcogReactFlaskREST/cashcogstreamlistener/streamlistener.py
       to run streamlistener in order to transfer data in to DB
 
     3. use clean DB script in case you want to start from scratch
-       > python InterviewXCNTGmbH/cashcogstreamlistener/clear_all_db.py
+       > python CashcogReactFlaskREST/cashcogstreamlistener/clear_all_db.py
 
 ### Start API application
     > Part 1 – BE-Part - RESTful-API which allows clients to fetch, update (approve or decline), and query these expenses.
     > api application that provide expenses interface (GET, POST,PUT) data
 
     1.  Here is where application located -
-        > InterviewXCNTGmbH/app
+        > CashcogReactFlaskREST/app
 
     2. Run it with
-       >  python InterviewXCNTGmbH/api/app_expenses_cashcog_xcnt.py
+       >  python CashcogReactFlaskREST/api/app_expenses_cashcog_react.py
 
     3. application will be started on
             PORT_API_APP = "5001"
-             SERVER_NAME_API_APP = "/cashcogXCNT/api/v1"
-        > http://localhost:5001/cashcogXCNT/api/v1
+             SERVER_NAME_API_APP = "/cashcogReact/api/v1"
+        > http://localhost:5001/cashcogReact/api/v1
 
-         available methods you can found in InterviewXCNTGmbH/api/resources/expense.py
+         available methods you can found in CashcogReactFlaskREST/api/resources/expense.py
     It works as independent service with Flask ecosystem
 
  ### Start web application -
     > Part 2 – FE-Part Visualize the approval process in a web application.
     1.  Here is where application located -
-        > InterviewXCNTGmbH/app
+        > CashcogReactFlaskREST/app
 
     2. Run it with
-       >  python InterviewXCNTGmbH/app/app_expenses_cashcog_xcnt.py
+       >  python CashcogReactFlaskREST/app/app_expenses_cashcog_react.py
 
     3. single page web application will be started on
-            SERVER_NAME_WEB_APP = "/CashcogXCNT-Expenses"
+            SERVER_NAME_WEB_APP = "/CashcogReact-Expenses"
             PORT_WEB_APP = "5000"
-        > http://localhost:5000/CashcogXCNT-Expenses/
+        > http://localhost:5000/CashcogReact-Expenses/
 
     4. To see DB data from stream
 
-       > http://localhost:5000/CashcogXCNT-Expenses/#/expenses
+       > http://localhost:5000/CashcogReact-Expenses/#/expenses
 
     5. To see requests log data from DB use this page
 
-       > http://localhost:5000/CashcogXCNT-Expenses/#/logs
+       > http://localhost:5000/CashcogReact-Expenses/#/logs
 
 
 # Code review
