@@ -193,3 +193,19 @@
     5. To see requests log data from DB use this page
 
        > http://localhost:5000/CashcogXCNT-Expenses/#/logs
+
+
+# Code review
+
+    - docker file
+    - ptocess
+    - big files
+    - front end url
+    - stream reader + relativ path
+    - relative import
+    - db.enam converter - state
+    - headers!
+    - session commit out of model -> + flush()
+    - @hybridproperty to @property
+
+    - @emloyee_name.expressoon
