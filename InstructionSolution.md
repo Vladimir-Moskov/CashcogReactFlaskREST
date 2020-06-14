@@ -195,13 +195,13 @@
        > http://localhost:5000/CashcogReact-Expenses/#/logs
 
 
-# Code review
+# Code review - TODO
 
     - docker file
-    - ptocess
-    - big files
+    - process +
+    - big files +
     - front end url
-    - stream reader + relativ path
+    - stream reader + relative path
     - relative import
     - db.enam converter - state
     - headers!
