@@ -1,11 +1,7 @@
+# TODO: finish docker file
+# TODO: finish docker-compose
+
 # Home work for *X-C-N-T**** ***GmbH
-
-Hi Volodymyr,
-
-Great that you're still interested! As a next step in the interview process we would like you to solve our coding challenge.
-
-I hope you have fun and should there be any questions, don’t hesitate to contact me.
-It would be great if you could solve these two tasks until 6th of January 2020.
 
 Background:
 Even in the world of startups and company builders expenses for trips etc. have to be filed and managed.
